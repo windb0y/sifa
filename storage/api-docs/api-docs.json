@@ -1,0 +1,225 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SIFA API",
+        "contact": {
+            "name": "Support Team",
+            "email": "adminfire@sifa.com"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/gedung": {
+            "get": {
+                "summary": "list gedung",
+                "operationId": "App\\Http\\Controllers\\BuildingController::index",
+                "responses": {
+                    "200": {
+                        "description": "Data seluruh gedung"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            },
+            "post": {
+                "summary": "save new gedung",
+                "operationId": "App\\Http\\Controllers\\BuildingController::store",
+                "responses": {
+                    "200": {
+                        "description": "success add gedung"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/gedung/{id}": {
+            "get": {
+                "summary": "detail gedung",
+                "operationId": "App\\Http\\Controllers\\BuildingController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data gedung"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            },
+            "put": {
+                "summary": "update gedung",
+                "operationId": "App\\Http\\Controllers\\BuildingController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success update gedung"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/cekdatas": {
+            "get": {
+                "summary": "list data perangkats",
+                "operationId": "App\\Http\\Controllers\\DataController::index",
+                "responses": {
+                    "200": {
+                        "description": "Data dari perangkats"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/perangkat": {
+            "get": {
+                "summary": "list perangkat",
+                "operationId": "App\\Http\\Controllers\\PerangkatController::index",
+                "responses": {
+                    "200": {
+                        "description": "Data seluruh ruangan"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            },
+            "post": {
+                "summary": "save new perangkat",
+                "operationId": "App\\Http\\Controllers\\PerangkatController::store",
+                "responses": {
+                    "201": {
+                        "description": "success add perangkat"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/perangkat/{id}": {
+            "get": {
+                "summary": "detail perangkat",
+                "operationId": "App\\Http\\Controllers\\PerangkatController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data perangkat"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            },
+            "put": {
+                "summary": "update perangkat",
+                "operationId": "App\\Http\\Controllers\\PerangkatController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success update perangkat"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/ruangan": {
+            "get": {
+                "summary": "list ruangan",
+                "operationId": "App\\Http\\Controllers\\RuanganController::index",
+                "responses": {
+                    "200": {
+                        "description": "Data seluruh ruangan"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            },
+            "post": {
+                "summary": "save new ruangan",
+                "operationId": "App\\Http\\Controllers\\RuanganController::store",
+                "responses": {
+                    "200": {
+                        "description": "success add ruangan"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/ruangan/{id}": {
+            "get": {
+                "summary": "detail ruangan",
+                "operationId": "App\\Http\\Controllers\\RuanganController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data ruangan"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            },
+            "put": {
+                "summary": "update ruangan",
+                "operationId": "App\\Http\\Controllers\\RuanganController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success update ruangan"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        }
+    }
+}
