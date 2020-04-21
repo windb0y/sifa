@@ -45,3 +45,6 @@ $router->get('evakuasi/{ruangan_id}', 'EvakuasiController@show');
 $router->post('evakuasi', 'EvakuasiController@store');
 $router->put('evakuasi/{id}', 'EvakuasiController@update');
 
+$router->get('user', 'UserController@index');
+$router->get('user/{id}', 'UserController@show');
+
