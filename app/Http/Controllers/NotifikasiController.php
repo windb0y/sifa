@@ -109,16 +109,19 @@ class NotifikasiController extends Controller
      */
     public function insert(){
         $sensor_id = 'XfZ0hBZdAqqANiK6jUMIw0CBq0JNTQJD';
-        $jsonsuhu = file_get_contents('http://blynk-cloud.com/'.$sensor_id.'/get/V5');
-        $objsuhu = json_decode($jsonsuhu);
+        //$jsonsuhu = file_get_contents('http://blynk-cloud.com/'.$sensor_id.'/get/V5');
+        $jsonsuhu = Http::get('http://blynk-cloud.com/'.$sensor_id.'/get/V5');
+        //$objsuhu = json_decode($jsonsuhu);
+        $objsuhu = $jsonsuhu->json();
         $suhu = $objsuhu['0'];
+        //dd($suhu);
 
-        $jsonasap = file_get_contents('http://blynk-cloud.com/'.$sensor_id.'/get/V4');
-        $objasap = json_decode($jsonasap);
+        $jsonasap = Http::get('http://blynk-cloud.com/'.$sensor_id.'/get/V4');
+        $objasap = $jsonasap->json();
         $asap = $objasap['0'];
 
-        $jsonthreshold = file_get_contents('http://blynk-cloud.com/'.$sensor_id.'/get/V2');
-        $objhold = json_decode($jsonthreshold);
+        $jsonthreshold = Http::get('http://blynk-cloud.com/'.$sensor_id.'/get/V2');
+        $objhold = $jsonthreshold->json();
         $threshold = $objhold['0'];
         $suhuthreshold = ($threshold/399.960)+50;
 
