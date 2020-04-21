@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Perangkat;
+use App\Evakuasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 
-class PerangkatController extends Controller
+class EvakuasiController extends Controller
 {
     public function __construct()
     {
@@ -16,9 +16,9 @@ class PerangkatController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/perangkat",
-     *     summary="list perangkat",
-     *     @OA\Response(response="200", description="Data seluruh ruangan"),
+     *     path="/evakuasi",
+     *     summary="list evakuasi ruangan",
+     *     @OA\Response(response="200", description="Data seluruh evakuasi ruangan"),
      *     @OA\Response(
      *         response="400",
      *         description="Error: Bad request",
@@ -27,7 +27,7 @@ class PerangkatController extends Controller
      */
     public function index()
     {     
-       $data = Perangkat::all();
+       $data = Evakuasi::all();
        return response()->json([
         'code' => '200',
         'message' => 'success',
@@ -37,23 +37,23 @@ class PerangkatController extends Controller
 
      /**
      * @OA\Get(
-     *     path="/perangkat/{id}",
-     *     summary="detail perangkat",
-     *     @OA\Response(response="200", description="Data perangkat"),
+     *     path="/evakuasi/{ruangan_id}",
+     *     summary="detail evakuasi ruangan tertentu",
+     *     @OA\Response(response="200", description="Data evakuasi ruangan tertentu"),
      *     @OA\Response(
      *         response="400",
      *         description="Error: Bad request",
      *     ),
      *     @OA\Parameter(
-     *         name="id",
+     *         name="ruangan_id",
      *         in="path",
      *         required=true,
      *     ), 
      * )
      */
-    public function show($id)
+    public function show($ruangan_id)
     {
-        $model = Perangkat::find($id);
+        $model = Evakuasi::where('ruangan_id', $ruangan_id)->orderBy('langkah', 'asc')->get();
         return response()->json([
             'code' => '200',
             'message' => 'success',
@@ -63,9 +63,9 @@ class PerangkatController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/perangkat",
-     *     summary="save new perangkat",
-     *     @OA\Response(response="201", description="success add perangkat"),
+     *     path="/evakuasi",
+     *     summary="save new evakuasi ruangan",
+     *     @OA\Response(response="200", description="success add evakuasi ruangan"),
      *     @OA\Response(
      *         response="400",
      *         description="Error: Bad request",
@@ -78,17 +78,15 @@ class PerangkatController extends Controller
             'required' => ' :attribute harus diisi.',
         ];
         $this->validate($request, [
-            'sensor_id' => 'required',
-            'control' => 'required',
-            'threshold' => 'required',
-            'ruangan_id' => 'required'
+            'ruangan_id' => 'required',
+            'langkah' => 'required',
+            'pesan' => 'required'
         ], $messages);
 
-        $model = new Perangkat([
-            'sensor_id' => $request->input('sensor_id'),
-            'control' => $request->input('control'),
-            'threshold' => $request->input('threshold'),
-            'ruangan_id' => $request->input('ruangan_id')
+        $model = new Evakuasi([
+            'ruangan_id' => $request->input('ruangan_id'),
+            'langkah' => $request->input('langkah'),
+            'pesan' => $request->input('pesan')
         ]);
 
         if($model->save()){
@@ -100,9 +98,9 @@ class PerangkatController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/perangkat/{id}",
-     *     summary="update perangkat",
-     *     @OA\Response(response="200", description="success update perangkat"),
+     *     path="/evakuasi/{id}",
+     *     summary="update evakuasi ruangan",
+     *     @OA\Response(response="200", description="success update evakuasi ruangan"),
      *     @OA\Response(
      *         response="400",
      *         description="Error: Bad request",
@@ -120,34 +118,24 @@ class PerangkatController extends Controller
         ];
 
         $this->validate($request, [
-            'sensor_id' => 'required',
-            'control' => 'required',
-            'threshold' => 'required',
-            'ruangan_id' => 'required'
+            'ruangan_id' => '',
+            'langkah' => '',
+            'pesan' => ''
         ], $messages);
 
-        $model = Perangkat::find($id);
+        $model = Ruangan::find($id);
 
-        $model->sensor_id = (!empty($request->input('sensor_id')) ? $request->input('sensor_id') : $model->sensor_id);
-        $model->control = (!empty($request->input('control')) ? $request->input('control') : $model->control);
-        $model->threshold = (!empty($request->input('threshold')) ? $request->input('threshold') : $model->threshold);
         $model->ruangan_id = (!empty($request->input('ruangan_id')) ? $request->input('ruangan_id') : $model->ruangan_id);
+        $model->langkah = (!empty($request->input('langkah')) ? $request->input('langkah') : $model->langkah);
+        $model->pesan = (!empty($request->input('pesan')) ? $request->input('pesan') : $model->pesan);
         
-        if($model->save()){
-
-        $sensor_id = $model->sensor_id;
-        $threshold =  $model->threshold;
-        $v2 = ($threshold - 50) * 399.960;      
-        $jsonthreshold = file_get_contents('http://blynk-cloud.com/'.$sensor_id.'/update/V2?value='.$v2);
+        $model->save();
 
         return response()->json([
             'code' => '200',
             'message' => 'Success',
             'data' => $model,
         ]);
-        }else {
-            return response()->json(["success" => false, "message" => $messages], 400);
-        }
     }
 
 }

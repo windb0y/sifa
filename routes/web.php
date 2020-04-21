@@ -34,3 +34,14 @@ $router->get('perangkat', 'PerangkatController@index');
 $router->get('perangkat/{id}', 'PerangkatController@show');
 $router->post('perangkat', 'PerangkatController@store');
 $router->put('perangkat/{id}', 'PerangkatController@update');
+
+$router->get('notifikasi/insert', 'NotifikasiController@insert');
+$router->get('notifikasi', 'NotifikasiController@index');
+$router->get('notifikasi/{id}', 'NotifikasiController@show');
+$router->post('notifikasi', 'NotifikasiController@store');
+
+$router->get('evakuasi', 'EvakuasiController@index');
+$router->get('evakuasi/{ruangan_id}', 'EvakuasiController@show');
+$router->post('evakuasi', 'EvakuasiController@store');
+$router->put('evakuasi/{id}', 'EvakuasiController@update');
+

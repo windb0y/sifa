@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.2.5",
         "darkaonline/swagger-lume": "7.*",
+        "guzzlehttp/guzzle": "^6.5",
         "laravel/lumen-framework": "^7.0",
         "zircote/swagger-php": "3.*"
     },

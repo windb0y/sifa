@@ -89,6 +89,135 @@
                 }
             }
         },
+        "/evakuasi": {
+            "get": {
+                "summary": "list evakuasi ruangan",
+                "operationId": "App\\Http\\Controllers\\EvakuasiController::index",
+                "responses": {
+                    "200": {
+                        "description": "Data seluruh evakuasi ruangan"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            },
+            "post": {
+                "summary": "save new evakuasi ruangan",
+                "operationId": "App\\Http\\Controllers\\EvakuasiController::store",
+                "responses": {
+                    "200": {
+                        "description": "success add evakuasi ruangan"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/evakuasi/{ruangan_id}": {
+            "get": {
+                "summary": "detail evakuasi ruangan tertentu",
+                "operationId": "App\\Http\\Controllers\\EvakuasiController::show",
+                "parameters": [
+                    {
+                        "name": "ruangan_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data evakuasi ruangan tertentu"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/evakuasi/{id}": {
+            "put": {
+                "summary": "update evakuasi ruangan",
+                "operationId": "App\\Http\\Controllers\\EvakuasiController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success update evakuasi ruangan"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/notifikasi": {
+            "get": {
+                "summary": "recent notifikasi",
+                "operationId": "App\\Http\\Controllers\\NotifikasiController::index",
+                "responses": {
+                    "200": {
+                        "description": "Data 3 notifikasi terbaru"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            },
+            "post": {
+                "summary": "save new notifikasi",
+                "operationId": "App\\Http\\Controllers\\NotifikasiController::store",
+                "responses": {
+                    "201": {
+                        "description": "success add notifikasi"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/notifikasi/{id}": {
+            "get": {
+                "summary": "detail notifikasi",
+                "operationId": "App\\Http\\Controllers\\NotifikasiController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data notifikasi"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/notifikasi/insert": {
+            "get": {
+                "summary": "add notifikasi auto cek",
+                "operationId": "App\\Http\\Controllers\\NotifikasiController::insert",
+                "responses": {
+                    "200": {
+                        "description": "success add auto notifikasi"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
         "/perangkat": {
             "get": {
                 "summary": "list perangkat",
