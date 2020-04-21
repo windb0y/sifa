@@ -123,7 +123,7 @@ class EvakuasiController extends Controller
             'pesan' => ''
         ], $messages);
 
-        $model = Ruangan::find($id);
+        $model = Evakuasi::find($id);
 
         $model->ruangan_id = (!empty($request->input('ruangan_id')) ? $request->input('ruangan_id') : $model->ruangan_id);
         $model->langkah = (!empty($request->input('langkah')) ? $request->input('langkah') : $model->langkah);
