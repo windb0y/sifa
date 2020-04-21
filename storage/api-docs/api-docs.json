@@ -349,6 +349,41 @@
                     }
                 }
             }
+        },
+        "/user": {
+            "get": {
+                "summary": "list user",
+                "operationId": "App\\Http\\Controllers\\UserController::index",
+                "responses": {
+                    "200": {
+                        "description": "Data seluruh user"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "summary": "detail ruangan",
+                "operationId": "App\\Http\\Controllers\\UserController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data user"
+                    },
+                    "400": {
+                        "description": "Error: Bad request"
+                    }
+                }
+            }
         }
     }
 }
