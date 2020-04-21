@@ -1,4 +1,4 @@
-# SMART INTEGRATED FIRE ALERTING wtih Lumen PHP Framework
+# SMART INTEGRATED FIRE ALERTING with Lumen PHP Framework
 
 Inovasi layanan yang dilakukan adalah pembuatan produk IoT yang terdiri dari sensor kebakaran yang saling terhubung satu sama lain. Produk dibuat menggunakan metode pengukuran suhu dan deteksi asap. Dalam metode ini, sensor deteksi kebakaran akan memuat sensor suhu untuk mengukur suhu yang telah diatur ambang batasnya dan sensor asap untuk mendeteksi adanya asap. Blok ini dinamakan fire alerting system. Namun, untuk mengintegrasikan hal tersebut dengan komponen lain sehingga menjadi smart building
 
