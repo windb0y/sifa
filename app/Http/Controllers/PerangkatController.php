@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Perangkat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 use Validator;
 
 class PerangkatController extends Controller
@@ -138,8 +139,9 @@ class PerangkatController extends Controller
         $sensor_id = $model->sensor_id;
         $threshold =  $model->threshold;
         $v2 = ($threshold - 50) * 399.960;      
-        $jsonthreshold = file_get_contents('http://blynk-cloud.com/'.$sensor_id.'/update/V2?value='.$v2);
-
+        $jsonthreshold = Http::get('http://blynk-cloud.com/'.$sensor_id.'/update/V2?value='.$v2);
+        $jsonthreshold->successful();
+        
         return response()->json([
             'code' => '200',
             'message' => 'Success',
